@@ -19,6 +19,7 @@ body {
   line-height: 1.6;
   background-color: #fff;
   color: #333;
+  padding-top: 7rem;
 }
 
 a {
@@ -40,16 +41,7 @@ img {
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
-  margin-top: 6rem;
-  margin-bottom: 3rem;
-}
-.containerNew {
-  max-width: 1100px;
-  margin: auto;
-  overflow: hidden;
-  padding: 0 2rem;
-  margin-top: 6rem;
-  margin-bottom: 26px;
+  margin-bottom: 2rem;
 }
 
 /* Text Styles*/
@@ -498,10 +490,6 @@ button {
 
 /* Mobile Styles */
 @media (max-width: 700px) {
-  .container {
-    margin-top: 8rem;
-  }
-
   .hide-sm {
     display: none;
   }
@@ -582,4 +570,9 @@ button {
   .post button {
     padding: 0.3rem 0.4rem;
   }
+}
+
+.spinnerDiv {
+  display: flex;
+  margin-top: 326px;
 }
