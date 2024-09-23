@@ -1,19 +1,15 @@
 /* eslint-disable default-case */
-
+/* eslint-disable import/no-anonymous-default-export */
 import {
-  GET_PROFILE,
-  PROFILE_ERROR,
-  CLEAR_PROFILE,
-  UPDATE_PROFILE,
-  GET_PROFILES,
-  GET_REPOS
+  DELETE_POST,
+  GET_POSTS,
+  POST_ERROR,
+  UPDATE_LIKES
 } from '../actions/types';
 
-/* eslint-disable import/no-anonymous-default-export */
 const initialState = {
-  profile: null,
-  profiles: [],
-  repos: [],
+  posts: [],
+  post: null,
   loading: true,
   error: {}
 };
@@ -22,41 +18,33 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_PROFILE:
-    case UPDATE_PROFILE:
+    case GET_POSTS:
       return {
         ...state,
-        profile: payload,
+        posts: payload,
         loading: false
       };
-
-    case GET_PROFILES:
+    case DELETE_POST:
       return {
         ...state,
-        profiles: payload,
+        posts: state.posts.filter((post) => post._id !== payload),
         loading: false
       };
-
-    case PROFILE_ERROR:
+    case POST_ERROR:
       return {
         ...state,
-        loading: false,
         error: payload,
-        profile: null
-      };
-    case CLEAR_PROFILE:
-      return {
-        ...state,
-        profile: null,
-        repos: [],
         loading: false
       };
-    case GET_REPOS:
+    case UPDATE_LIKES:
       return {
         ...state,
-        repos: payload,
+        posts: state.posts.map((post) =>
+          post._id === payload.id ? { ...post, likes: payload.likes } : post
+        ),
         loading: false
       };
+
     default:
       return state;
   }
