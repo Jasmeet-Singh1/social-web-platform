@@ -52,7 +52,7 @@ const App = () => {
               <Route exact path="/add-experience" element={<AddExperience />} />
               <Route exact path="/add-education" element={<AddEducation />} />
               <Route exact path="/posts" element={<Posts />} />
-              <Route exact path="/posts:id" element={<Post />} />
+              <Route exact path="/posts/:id" element={<Post />} />
             </Route>
           </Routes>
         </Fragment>

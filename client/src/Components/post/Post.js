@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getPost } from '../../actions/post';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import PostItem from '../posts/PostItem';
+import CommentForm from './CommentForm';
 
 const Post = ({ getPost, post: { post, loading } }) => {
   const { id } = useParams();
@@ -11,7 +13,18 @@ const Post = ({ getPost, post: { post, loading } }) => {
   useEffect(() => {
     getPost(id);
   }, [getPost]);
-  return <div className="container">Post</div>;
+
+  return loading || post === null ? (
+    <Spinner />
+  ) : (
+    <div className="container">
+      <Link to="/posts" className="btn ">
+        Back To Posts
+      </Link>
+      <PostItem post={post} showActions={false} />
+      <CommentForm postId={post._id} />
+    </div>
+  );
 };
 
 Post.propTypes = {
