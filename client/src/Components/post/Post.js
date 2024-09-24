@@ -15,6 +15,8 @@ const Post = ({ getPost, post: { post, loading } }) => {
     getPost(id);
   }, [getPost, id]);
 
+
+  console.log('post.comments', post?.comments);
   return loading || post === null ? (
     <Spinner />
   ) : (
