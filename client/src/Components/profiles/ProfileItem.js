@@ -2,15 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const ProfileItem = ({
-  profile: {
+const ProfileItem = ({ profile }) => {
+  if (!profile || !profile.user) {
+    return null; // or show a fallback UI
+  }
+
+  const {
     user: { _id, name, avatar },
     status,
     company,
     location,
     skills
-  }
-}) => {
+  } = profile;
+
   return (
     <div className="profile bg-light">
       <img className="round-img" src={avatar} alt="" />
@@ -25,7 +29,7 @@ const ProfileItem = ({
         </Link>
       </div>
       <ul>
-        {skills.slice(0, 4).map((skill, index) => (
+        {skills?.slice(0, 4).map((skill, index) => (
           <li key={index} className="text-primary">
             <i className="fas fa-check"></i> {skill}
           </li>

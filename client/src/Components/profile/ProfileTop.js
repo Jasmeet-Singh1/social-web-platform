@@ -22,36 +22,36 @@ const ProfileTop = ({
       <p>{location && <span>{location}</span>}</p>
       <div className="icons my-1">
         {website && (
-          <Link to={website} target="_blank" rel="noopener noreferrer">
+          <a href={website} target="_blank" rel="noopener noreferrer">
             <i className="fas fa-globe fa-2x"></i>
-          </Link>
+          </a>
         )}
 
         {social && social.twitter && (
-          <Link to={social.twitter} target="_blank" rel="noopener noreferrer">
+          <a href={social.twitter} target="_blank" rel="noopener noreferrer">
             <i className="fab fa-twitter fa-2x"></i>
-          </Link>
+          </a>
         )}
 
         {social && social.facebook && (
-          <Link to={social.facebook} target="_blank" rel="noopener noreferrer">
+          <a href={social.facebook} target="_blank" rel="noopener noreferrer">
             <i className="fab fa-facebook fa-2x"></i>
-          </Link>
+          </a>
         )}
         {social && social.linkedin && (
-          <Link to={social.linkedin} target="_blank" rel="noopener noreferrer">
+          <a href={social.linkedin} target="_blank" rel="noopener noreferrer">
             <i className="fab fa-linkedin fa-2x"></i>
-          </Link>
+          </a>
         )}
         {social && social.youtube && (
-          <Link to={social.youtube} target="_blank" rel="noopener noreferrer">
+          <a href={social.youtube} target="_blank" rel="noopener noreferrer">
             <i className="fab fa-youtube fa-2x"></i>
-          </Link>
+          </a>
         )}
         {social && social.instagram && (
-          <Link to={social.instagram} target="_blank" rel="noopener noreferrer">
+          <a href={social.instagram} target="_blank" rel="noopener noreferrer">
             <i className="fab fa-instagram fa-2x"></i>
-          </Link>
+          </a>
         )}
       </div>
     </div>
