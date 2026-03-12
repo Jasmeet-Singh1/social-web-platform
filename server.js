@@ -2,11 +2,33 @@ const express = require('express');
 const connectDB = require('./config/db.js');
 const path = require('path');
 const fs = require('fs');
+const cors = require('cors');
 
 const app = express();
 
 // Connect Database
 connectDB();
+
+// CORS (for separate frontend deployment)
+const allowedOrigins = (process.env.CORS_ORIGINS || '')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
+
+app.use(
+  cors({
+    origin: (origin, cb) => {
+      // allow non-browser requests (curl, server-to-server) with no origin
+      if (!origin) return cb(null, true);
+      if (allowedOrigins.length === 0) return cb(null, true);
+      if (allowedOrigins.includes(origin)) return cb(null, true);
+      return cb(new Error(`CORS blocked for origin: ${origin}`));
+    },
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'x-auth-token'],
+    optionsSuccessStatus: 204
+  })
+);
 
 //Init middleware
 app.use(express.json({ extended: false }));
