@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const config = require('config');
 
 module.exports = function (req, res, next) {
   //get token
@@ -14,7 +13,13 @@ module.exports = function (req, res, next) {
 
   //verify token
   try {
-    const decoded = jwt.verify(token, config.get('jwtSecret'));
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      return res
+        .status(500)
+        .json({ msg: 'Server misconfiguration: JWT_SECRET not set' });
+    }
+    const decoded = jwt.verify(token, secret);
     req.user = decoded.user;
     next();
   } catch (error) {

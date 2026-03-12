@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
-const config = require('config');
-const db = config.get('mongoURI');
 
 const connectDB = async () => {
   try {
+    const db = process.env.MONGO_URI;
+    if (!db) {
+      console.error(
+        'MongoDB URI not set. Set MONGO_URI in environment variables.'
+      );
+      process.exit(1);
+    }
     await mongoose.connect(db, {
       useNewUrlParser: true,
       useCreateIndex: true,
